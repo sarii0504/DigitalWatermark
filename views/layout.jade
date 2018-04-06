@@ -1,0 +1,40 @@
+doctype html
+//header//父模板
+//调用时，如果父模板中定义了某块内容，而子模板中没有定义时，默认显示父模板中的内容。
+//如果子模板中定义了，则直接覆盖父模板中的内容
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/function.js').
+  body.background
+    div.banner
+      h1.bannerTitle 数字水印
+    img.cartoon#cartoon(src="/images/cartoon.png")
+
+    div.before
+      p.beforeCaption 上传区域
+      //button.inputButton#inputButton(type = 'button', onclick = "readImage()") 载入图片
+      form#inputform(method='post',action='/',enctype="multipart/form-data")
+        p 上传原图--
+          input#inputButton(type='file', name='image',accept="image/jpeg",action="/")
+        p 上传水印--
+          input(type="file",name="waterMark",accept="image/jpeg",action="/")
+        div
+          p ---------------------------------------
+        p 提取水印--
+          input(type="file",name="watermarked",accept="image/bmp",action="/")
+        input#submitButton(type="submit",value="确认上传")
+      p.jiami 加密
+      p.jiemi 解密
+    //提交
+    div.after
+      p.afterCaption 结果区域
+      //img.border#border(src= '/images/border.jpg')
+      img.output#output(alt="",width="355",height="355",src=url)
+
+    p.pid#pid
+
+    block content
+
+
